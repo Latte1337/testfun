@@ -78,6 +78,10 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         console.log("current ratio of pool2: ", pool2.currentRatio(poolTotalAmount));
         console.log("assets of pool 3 : ", pool3.assets);
         console.log("current ratio of pool3: ", pool3.currentRatio(poolTotalAmount));
+
+        expect(pool1.currentRatio(poolTotalAmount)).to.equal(0.5);
+        expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
+        expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
     });
 
     it("Should withdraw 3000 from first pool and then rebalance all with current funds and then meet expected ratio", () => {
@@ -118,6 +122,10 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         console.log("current ratio of pool2: ", pool2.currentRatio(poolTotalAmount));
         console.log("assets of pool 3 : ", pool3.assets);
         console.log("current ratio of pool3: ", pool3.currentRatio(poolTotalAmount));
+
+        expect(pool1.currentRatio(poolTotalAmount)).to.equal(0.5);
+        expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
+        expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
     });
 
     it("Should withdraw 1000 from second pool and 500 from third pool and then rebalance all with current funds and then meet expected ratio", () => {
@@ -159,6 +167,10 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         console.log("current ratio of pool2: ", pool2.currentRatio(poolTotalAmount));
         console.log("assets of pool 3 : ", pool3.assets);
         console.log("current ratio of pool3: ", pool3.currentRatio(poolTotalAmount));
+
+        expect(pool1.currentRatio(poolTotalAmount)).to.equal(0.5);
+        expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
+        expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
     });
 
     it("Should deposit 1000 to first pool and then rebalance all with current funds and then meet expected ratio", () => {
@@ -199,4 +211,8 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         console.log("current ratio of pool2: ", pool2.currentRatio(poolTotalAmount));
         console.log("assets of pool 3 : ", pool3.assets);
         console.log("current ratio of pool3: ", pool3.currentRatio(poolTotalAmount));
+
+        expect(pool1.currentRatio(poolTotalAmount)).to.equal(0.5);
+        expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
+        expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
     });
