@@ -186,9 +186,6 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         var pool2Increase = pool2.increase(poolTotalAmount);
         var pool3Increase = pool3.increase(poolTotalAmount);
 
-        console.log("pool1Incease", pool1Incease);
-        console.log("pool1Difference", pool1Difference);
-
         if(pool1Incease){
             pool1.assets += pool1Difference;
         }else{
@@ -232,9 +229,6 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         var pool2Increase = pool2.increase(poolTotalAmount);
         var pool3Increase = pool3.increase(poolTotalAmount);
 
-        console.log("pool1Incease", pool1Incease);
-        console.log("pool1Difference", pool1Difference);
-
         if(pool1Incease){
             pool1.assets += pool1Difference;
         }else{
@@ -277,9 +271,6 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         var pool1Incease = pool1.increase(poolTotalAmount);
         var pool2Increase = pool2.increase(poolTotalAmount);
         var pool3Increase = pool3.increase(poolTotalAmount);
-
-        console.log("pool1Incease", pool1Incease);
-        console.log("pool1Difference", pool1Difference);
 
         if(pool1Incease){
             pool1.assets += pool1Difference;
