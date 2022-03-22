@@ -267,7 +267,7 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
 
     it("Should rebalance in memory then do the deposit of 4000", () => {
 
-        var depositAmount = 1000;
+        var depositAmount = 4000;
         var poolTotalAmount = pool1.assets + pool2.assets + pool3.assets + depositAmount;
 
         var pool1Difference = pool1.amountToIncreaseOrDecrease(poolTotalAmount);
