@@ -216,3 +216,56 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
         expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
     });
+
+    it("Should deposit 1000 to first pool and then rebalance all with current funds and then meet expected ratio, no extra deposit needed", () => {
+
+        var depositAmount = 1000;
+        var previewAmount = pool1.assets + depositAmount; // you can ofc store this in a memory valuable, no need to write to storage until all calculations are done, basicly modify the functions 
+
+        var poolTotalAmount = previewAmount + pool2.assets + pool3.assets;
+
+        var pool1Difference = pool1.amountToIncreaseOrDecrease(poolTotalAmount);
+        var pool2Difference = pool2.amountToIncreaseOrDecrease(poolTotalAmount);
+        var pool3Difference = pool3.amountToIncreaseOrDecrease(poolTotalAmount);
+
+        var pool1Incease = pool1.increase(poolTotalAmount);
+        var pool2Increase = pool2.increase(poolTotalAmount);
+        var pool3Increase = pool3.increase(poolTotalAmount);
+
+        console.log("pool1Incease", pool1Incease);
+        console.log("pool1Difference", pool1Difference);
+
+        if(pool1Incease){
+            
+            var valueToIncrease = depositAmount - pool1Difference;
+            console.log("valueToIncrease", valueToIncrease);
+            pool1.assets += valueToIncrease;
+        }else{
+            var valueToDecrease = depositAmount + pool1Difference;
+            console.log("pool1Difference", pool1Difference);
+            pool1.assets -= valueToDecrease;
+        }
+
+        if(pool2Increase){
+            pool2.assets += pool2Difference;
+        }else{
+            pool2.assets -= pool2Difference;
+        }
+
+        if(pool3Increase){
+            pool3.assets += pool3Difference;
+        }else{
+            pool3.assets -= pool3Difference;
+        }
+
+        console.log("assets of pool 1 : ", pool1.assets);
+        console.log("current ratio of pool1: ", pool1.currentRatio(poolTotalAmount));
+        console.log("assets of pool 2 : ", pool2.assets);
+        console.log("current ratio of pool2: ", pool2.currentRatio(poolTotalAmount));
+        console.log("assets of pool 3 : ", pool3.assets);
+        console.log("current ratio of pool3: ", pool3.currentRatio(poolTotalAmount));
+
+        expect(pool1.currentRatio(poolTotalAmount)).to.equal(0.5);
+        expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
+        expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
+    });
