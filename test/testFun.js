@@ -220,7 +220,7 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
     it("Should deposit 1000 to first pool and then rebalance all with current funds and then meet expected ratio, no extra deposit needed", () => {
 
         var depositAmount = 1000;
-        var previewAmount = pool1.assets + depositAmount; // you can ofc store this in a memory valuable, no need to write to storage until all calculations are done, basicly modify the functions 
+        var previewAmount = pool1.assets + depositAmount; // you can ofc store this in a memory valuable, no need to write to storage until all calculations are done
 
         var poolTotalAmount = previewAmount + pool2.assets + pool3.assets;
 
