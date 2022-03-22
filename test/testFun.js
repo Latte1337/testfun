@@ -310,3 +310,45 @@ let pool1 = new Pool(5000, 0.5), pool2 = new Pool(4000, 0.4), pool3 = new Pool(1
         expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
         expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
     });
+
+    it("Should withdraw 2000 from all 3 pools in perfect ratio and then meet expected ratio", () => {
+
+        var poolTotalAmount = pool1.assets + pool2.assets + pool3.assets - 2000;
+
+        var pool1Difference = pool1.amountToIncreaseOrDecrease(poolTotalAmount);
+        var pool2Difference = pool2.amountToIncreaseOrDecrease(poolTotalAmount);
+        var pool3Difference = pool3.amountToIncreaseOrDecrease(poolTotalAmount);
+
+        var pool1Incease = pool1.increase(poolTotalAmount);
+        var pool2Increase = pool2.increase(poolTotalAmount);
+        var pool3Increase = pool3.increase(poolTotalAmount);
+
+        if(pool1Incease){
+            pool1.assets += pool1Difference;
+        }else{
+            pool1.assets -= pool1Difference;
+        }
+
+        if(pool2Increase){
+            pool2.assets += pool2Difference;
+        }else{
+            pool2.assets -= pool2Difference;
+        }
+
+        if(pool3Increase){
+            pool3.assets += pool3Difference;
+        }else{
+            pool3.assets -= pool3Difference;
+        }
+
+        console.log("assets of pool 1 : ", pool1.assets);
+        console.log("current ratio of pool1: ", pool1.currentRatio(poolTotalAmount));
+        console.log("assets of pool 2 : ", pool2.assets);
+        console.log("current ratio of pool2: ", pool2.currentRatio(poolTotalAmount));
+        console.log("assets of pool 3 : ", pool3.assets);
+        console.log("current ratio of pool3: ", pool3.currentRatio(poolTotalAmount));
+
+        expect(pool1.currentRatio(poolTotalAmount)).to.equal(0.5);
+        expect(pool2.currentRatio(poolTotalAmount)).to.equal(0.4);
+        expect(pool3.currentRatio(poolTotalAmount)).to.equal(0.1);
+    });
